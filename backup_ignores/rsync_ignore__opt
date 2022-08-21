@@ -1,0 +1,4 @@
+# rsync-excludes for /opt
+##############################################
+# Directories/Files that do not need backup  #
+##############################################

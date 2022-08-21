@@ -1,0 +1,7 @@
+- name: Running Backup
+  hosts: localhost
+  become: yes
+  tasks:
+   - name:
+     ansible.builtin.shell:
+       cmd: /bin/bash  /home/linus/dev/ansible_playbooks/backup.sh

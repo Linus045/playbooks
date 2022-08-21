@@ -1,0 +1,4 @@
+# rsync-excludes for /etc
+##############################################
+# Directories/Files that do not need backup  #
+##############################################

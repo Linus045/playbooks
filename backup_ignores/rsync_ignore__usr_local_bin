@@ -1,0 +1,4 @@
+# rsync-excludes for /usr/local/bin
+##############################################
+# Directories/Files that do not need backup  #
+##############################################

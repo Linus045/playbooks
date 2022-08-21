@@ -1,0 +1,26 @@
+- name: Install/Update nvim
+  hosts: localhost
+  become: yes
+  tasks:
+   - name: Deleting old nvim repo from /tmp
+     ansible.builtin.shell:
+       chdir: /tmp
+       removes: /tmp/neovim
+       cmd: sudo -u linus rm -rf /tmp/neovim
+
+
+   - name: Cloning nvim repo
+     ansible.builtin.shell:
+       chdir: /tmp
+       cmd: sudo -u linus git clone https://github.com/neovim/neovim.git neovim
+
+   - name: CMake project
+     ansible.builtin.shell:
+       chdir: /tmp/neovim
+       cmd: sudo -u linus make CMAKE_BUILD_TYPE=RelWithDebInfo
+
+
+   - name: Install nvim binary
+     ansible.builtin.shell:
+       chdir: /tmp/neovim
+       cmd: sudo make install
