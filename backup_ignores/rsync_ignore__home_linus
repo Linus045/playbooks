@@ -1,9 +1,4 @@
 # rsync-excludes for /home/linus
-##############################################
-# Directories/Files that do not need backup  #
-##############################################
-
-# rsync-excludes for /home/linus
 ###############################################
 # directories, probably not worth a backup    #
 # (uncomment the files you don't need)        #
