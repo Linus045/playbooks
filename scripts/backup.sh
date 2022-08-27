@@ -1,4 +1,4 @@
-curDate=$(date -u +"%Y-%m-%d" | tr "-" "_" | tr ":" "_")
+curDate=$(date -u +"%Y_%m_%d")
 logfile="logs/backup.log_$curDate"
 
 remote_address="homeserver"
