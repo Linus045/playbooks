@@ -4,4 +4,4 @@
   tasks:
    - name:
      ansible.builtin.shell:
-       cmd: /bin/bash /home/linus/dev/ansible_playbooks/scripts/backup.sh
+       cmd: sudo /bin/bash /home/linus/dev/github/ansible_playbooks/scripts/backup.sh

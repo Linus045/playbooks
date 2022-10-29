@@ -1,12 +1,11 @@
 curDate=$(date -u +"%Y_%m_%d")
 logfile="logs/backup.log_$curDate"
 
-remote_address="homeserver"
 remote_username="homeserver"
+remote_address="homeserver"
 remote_root_dir="/mnt/data_2tb/backup/backup_$curDate"
 
 backup_dirs=("/etc" "/home/linus" "/opt" "/usr/local/bin" "/usr/local/sbin")
-
 
 mkdir -p logs
 touch $logfile
@@ -20,14 +19,14 @@ echo "-----------------------------------------------------" >> $logfile
 
 for dir in ${backup_dirs[@]}
 do
-  echo "Creating $dir on remote"
+  echo "Creating $remote_root_dir/$dir on remote"
   ssh $remote_username@$remote_address mkdir -p $remote_root_dir/$dir
   ignore_file="backup_ignores/rsync_ignore_$(echo $dir | tr "/" "_")"
   
   if [[ -f "$ignore_file" ]]; then
     echo "RSYNC: $dir" >> $logfile
     echo "RSYNC: $dir"
-    sudo rsync -a --delete -v --progress -s -H -z --exclude-from=$ignore_file $dir/ homeserver@homeserver:$remote_root_dir/$dir >> logs/backup.log_$curDate 2>&1
+    sudo rsync -a --delete -v --progress -s -H -z --exclude-from=$ignore_file $dir/ $remote_username@$remote_address:$remote_root_dir/$dir >> logs/backup.log_$curDate 2>&1
   else
     echo "WARNING: No ignore file found for: $dir. Please edit $ignore_file if you want to exclude files from being backed up and run the command again" 
     

@@ -8,7 +8,17 @@
        removes: /tmp/neovim
        cmd: sudo -u linus rm -rf /tmp/neovim
 
+   - name: Deleting old Nvim data
+     ansible.builtin.shell:
+       chdir: /home/linus/.local/share/nvim
+       removes: /home/linus/.local/share/nvim
+       cmd: sudo -u linus rm -rf /home/linus/.local/share/nvim
 
+   - name: Deleting old Nvim data
+     ansible.builtin.shell:
+       removes: /usr/local/share/nvim/runtime
+       cmd: sudo rm -rf /usr/local/share/nvim/runtime
+   
    - name: Cloning nvim repo
      ansible.builtin.shell:
        chdir: /tmp
