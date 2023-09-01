@@ -3,7 +3,7 @@ logfile="logs/backup.log_$curDate"
 
 remote_username="homeserver"
 remote_address="homeserver"
-remote_root_dir="/mnt/data_2tb/backup/backup_$curDate"
+remote_root_dir="/mnt/excalibur/backup/backup_$curDate"
 
 backup_dirs=("/etc" "/home/linus" "/opt" "/usr/local/bin" "/usr/local/sbin")
 
@@ -26,7 +26,7 @@ do
   if [[ -f "$ignore_file" ]]; then
     echo "RSYNC: $dir" >> $logfile
     echo "RSYNC: $dir"
-    sudo rsync -a --delete -v --progress -s -H -z --exclude-from=$ignore_file $dir/ $remote_username@$remote_address:$remote_root_dir/$dir >> logs/backup.log_$curDate 2>&1
+    sudo rsync -ah --delete -v --info=progress2 -s -H -z --exclude-from=$ignore_file $dir/ $remote_username@$remote_address:$remote_root_dir/$dir >> logs/backup.log_$curDate 2>&1
   else
     echo "WARNING: No ignore file found for: $dir. Please edit $ignore_file if you want to exclude files from being backed up and run the command again" 
     
